@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.northwind.business.abstracts.ProductService;
+import kodlamaio.northwind.core.utilities.results.DataResult;
+import kodlamaio.northwind.core.utilities.results.SuccesDataResult;
 import kodlamaio.northwind.dataAccess.abtracts.ProductDao;
 import kodlamaio.northwind.entities.concretes.Product;
 
@@ -13,16 +15,18 @@ import kodlamaio.northwind.entities.concretes.Product;
 public class ProductManager implements ProductService {
 
 	private ProductDao productDao;
-	
-	@Autowired  //dependency injection yapar
+
+	@Autowired // dependency injection yapar
 	public ProductManager(ProductDao productDao) {
 		super();
 		this.productDao = productDao;
 	}
 
 	@Override
-	public List<Product> getAll() {
-		return this.productDao.findAll();
+	public DataResult<List<Product>> getAll() {
+
+		return new SuccesDataResult<List<Product>>(this.productDao.findAll(),"Veri listelendi");
+
 	}
 
 }
