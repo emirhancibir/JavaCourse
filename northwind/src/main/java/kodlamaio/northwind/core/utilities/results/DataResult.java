@@ -21,4 +21,8 @@ public class DataResult<T> extends Result {
 		super(succes);
 		this.data = data;
 	}
+	
+	public T getData() {
+		return data;
+	}
 }
